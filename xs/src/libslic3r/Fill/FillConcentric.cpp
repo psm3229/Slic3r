@@ -1,5 +1,6 @@
 #include "../ClipperUtils.hpp"
 #include "../ExPolygon.hpp"
+#include "../Flow.hpp"
 #include "../Surface.hpp"
 
 #include "FillConcentric.hpp"
