@@ -142,14 +142,14 @@ namespace Slic3r {
                             // If "detect thin walls" is not enabled, this paths will be entered, which
                             // leads to overflows, as in prusa3d/Slic3r GH #32
                             if (i*(distance)<20) {
-                                offsets = offset2(
+                                offsets = offset(
                                                   last,
                                                   -(distance)
                                                   );
                             } else {
-                                offsets = offset2(
+                                offsets = offset(
                                                   last,
-                                                  -(20 + distance),
+                                                  -(20 + distance)
                                                   );
                             }
                         }
