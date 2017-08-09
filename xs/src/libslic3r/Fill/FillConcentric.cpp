@@ -21,20 +21,21 @@ FillConcentric::_fill_surface_single(
     
     if (this->density > 0.9999f && !this->dont_adjust) {
         BoundingBox bounding_box = expolygon.contour.bounding_box();
-        distance = this->adjust_solid_spacing(bounding_box.size().x, distance);
+        distance = Flow::solid_spacing(bounding_box.size().x, distance);
         this->_spacing = unscale(distance);
     }
 
     Polygons loops = (Polygons)expolygon;
     Polygons last  = loops;
+    const float nozzleoff = scale_(20);
     size_t i = 0;
     while (!last.empty()) {
-        if (i*(distance + min_spacing/2) < 20) {
+        if (i*(distance + min_spacing/2) < nozzleoff) {
             last = offset2(last, -(distance + min_spacing/2), +min_spacing/2);
             i++;
         } else {
-            last = offset2(last, -(distance + min_spacing/2 + 20), +min_spacing/2);
-            i=0;
+            last = offset2(last, -(distance + min_spacing/2 + nozzleoff), +min_spacing/2);
+            i=1;
         }
         append_to(loops, last);
     }
